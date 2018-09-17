@@ -3,12 +3,7 @@ class Api::V1::WhinersController < BaseController
     skip_before_action :verify_authentication, only: :create
 
     def index
-        if params[:whiners_per_page]
-            @whiners_per_page = params[:whiners_per_page]  
-        else
-            @whiners_per_page = 8
-        end 
-        @whiners = Whiner.order("username ASC").page(params[:page]).per(@whiners_per_page)
+        @whiners = Whiner.all
     end
 
     def show

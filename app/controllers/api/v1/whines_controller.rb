@@ -3,13 +3,8 @@ class Api::V1::WhinesController < BaseController
     before_action :set_whiner, only: [:destroy]
     
 
-    def index
-        if params[:whines_per_page]
-            @whines_per_page = params[:whines_per_page]  
-        else
-            @whines_per_page = 8
-        end          
-        @whines = Whine.order("created_at DESC").page(params[:page]).per(@whines_per_page)
+    def index         
+        @whines = Whine.all
     end
 
     def show
