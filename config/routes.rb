@@ -16,4 +16,9 @@ Rails.application.routes.draw do
 
     root 'whines#index'
 
+    namespace :api do
+      namespace :v1 do
+        resource :session, only: :create
+      end
+    end
 end

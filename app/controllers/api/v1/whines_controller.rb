@@ -1,11 +1,15 @@
-class WhinesController < ApplicationController
+class Api::V1::WhinesController < BaseController
     before_action :set_whine, only: [:show, :destroy]
     before_action :set_whiner, only: [:destroy]
-    skip_before_action :verify_authentication
     
 
     def index
-        @whines = Whine.order("created_at DESC").page(params[:page]).per(8)
+        if params[:whines_per_page]
+            @whines_per_page = params[:whines_per_page]  
+        else
+            @whines_per_page = 8
+        end          
+        @whines = Whine.order("created_at DESC").page(params[:page]).per(@whines_per_page)
     end
 
     def show

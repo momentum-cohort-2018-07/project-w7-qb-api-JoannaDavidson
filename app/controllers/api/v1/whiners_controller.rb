@@ -1,9 +1,14 @@
-class WhinersController < ApplicationController
+class Api::V1::WhinersController < BaseController
     before_action :set_whiner, only: [:show, :edit, :update, :destroy]
-    skip_before_action :verify_authentication
+    skip_before_action :verify_authentication, only: :create
 
     def index
-        @whiners = Whiner.order("username ASC").page(params[:page]).per(8)
+        if params[:whiners_per_page]
+            @whiners_per_page = params[:whiners_per_page]  
+        else
+            @whiners_per_page = 8
+        end 
+        @whiners = Whiner.order("username ASC").page(params[:page]).per(@whiners_per_page)
     end
 
     def show
@@ -17,9 +22,9 @@ class WhinersController < ApplicationController
         @whiner = Whiner.new(whiner_params)
         if @whiner.save
             WhinerMailer.signup(@whiner).deliver_now
-            redirect_to @whiner, notice: 'Account created. Please log in.'
+            render json: @whiner, status: :created
         else
-            render 'new'
+            render json: @whiner.errors, status: :unprocessable_entity
         end
     end
 
