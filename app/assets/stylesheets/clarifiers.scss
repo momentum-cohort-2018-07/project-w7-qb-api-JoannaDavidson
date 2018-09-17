@@ -1,0 +1,40 @@
+// Place all the styles related to the Clarifiers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.clarifiers_index_container {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    font-size: .8em;
+}
+
+.clarifier_container {
+    width: 100%;
+    margin: 0 10px 0 45%;
+    border: 1px solid #333333;
+    border-top-width: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-end;
+
+}
+
+.clarifier_byline {
+    width: 100%;
+    background-color: #dddddd;
+    padding: 3px 10px;
+    color: #111111;
+}
+
+.clarifier_body {
+    width: 100%;
+    background-color: #eeeeff;
+    padding: 3px 10px;
+}
+
+.clarifier_form {
+    width: 100%;
+    margin: 0 10px 0 45%;
+}

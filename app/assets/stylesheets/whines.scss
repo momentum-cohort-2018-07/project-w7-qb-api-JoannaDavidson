@@ -1,0 +1,95 @@
+// Place all the styles related to the Whines controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.wrapper, #whine_index_header {
+    width: 90%;
+    margin: 5px auto;
+}
+
+#whine_index_header {
+    
+}
+
+.wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.left_side_wrapper {
+    width: 65%;
+    padding: 5px;
+}
+
+.right_side_wrapper {
+    width: 30%;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.whine_container {
+    width: 100%;
+    border: 2px solid #000066;
+    margin-top: 10px;
+}
+
+.whine_header {
+    width: 100%;
+    background-color: #000066;
+    padding: 3px 10px;
+    color: #ffffff;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.whine_body {
+    width: 100%;
+    background-color: #eeeeff;
+    padding: 3px 10px;
+}
+
+.whine_byline {
+    font-size: .8rem;
+}
+
+.rs_modules {
+    width: 100%;
+    margin-bottom: 10px;
+    border: 2px solid #999999;
+}
+
+.rsm_header {
+    width: 100%;
+    background-color: #999999;
+    color: blue;
+    padding: 3px 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.rsm_body {
+    width: 100%;
+    background-color: #fff9de;
+    padding: 5px 10px;
+}
+
+#rsm1_body ul {
+    list-style: none;
+}
+
+.rsm_avatar {
+    display: block;
+    margin: 0 auto;
+}
+
+.avatar_thumb {
+    width: 50%;
+}
+
+.avatar_text {
+    width: 50%;
+}

@@ -1,0 +1,60 @@
+<div class="right_side_wrapper">
+    <div id="rs_module_1" class="rs_modules"><%# If logged in, User info here ? %>
+      <div id="rsm1_header" class="rsm_header white_link">Whiner info
+      </div>
+      <div id="rsm1_body" class="rsm_body">
+          <% if current_whiner %>
+        <% if current_whiner.avatar.attached? %>
+          <%= image_tag current_whiner.avatar, :class => "rsm_avatar avatar_thumb" %>
+        <% else %>
+          <p><%= link_to 'Add an avatar', edit_whiner_path(current_whiner), :class => "rsm_avatar avatar_text btn btn-secondary btn-sm" %></p>
+        <% end %>
+        <ul>
+            <li>Whiner: <%= current_whiner.username %></li>
+            <li>Name: <%= current_whiner.name %></li>
+            <li>Email: <%= current_whiner.email %></li>
+        </ul>
+      </div>
+    </div>
+    <div id="rs_module_2" class="rs_modules"><%# current_whiner's most recent whines %>
+      <div id="rsm2_header" class="rsm_header white_link">Your Recent Whines
+      </div>
+      <div id="rsm2_body" class="rsm_body">
+        <ul>
+          <% @whiniest = Whine.select { |w| w.whiner_id === current_whiner.id }.last(5) %>
+          <% @whiniest.each do |rswhine| %>
+              <li><%= link_to "#{rswhine.title}", whine_path(rswhine.id) %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div id="rs_module_3" class="rs_modules"><%# current_whiner's most recent answers %>
+      <div id="rsm3_header" class="rsm_header white_link">Your Recent Answers
+      </div>
+      <div id="rsm3_body" class="rsm_body">
+        <ul>
+          <% @answerest = Answer.select { |a| a.whiner_id === current_whiner.id }.last(5) %>
+          <% @answerest.each do |rsanswer| %>
+              <li><%= link_to "#{Whine.find(rsanswer.whine_id).title}", whine_path(rsanswer.whine_id) %></li>
+            <% end %>
+        </ul>
+      </div>
+    </div>
+<% else %>
+        Please <%= link_to 'Log In', new_session_path, { :class=>"text-right text-white btn btn-secondary text-white"} %> to see your user info
+      </div>
+    </div>
+<% end %>
+    <div id="rs_module_4" class="rs_modules"><%# most active users %>
+      <div id="rsm4_header" class="rsm_header white_link">Most Active Whiners
+      </div>
+      <div id="rsm4_body" class="rsm_body">
+      </div>
+    </div>
+    <div id="rs_module_5" class="rs_modules"><%# answers voted up the most %>
+      <div id="rsm4_header" class="rsm_header white_link">Best Answers
+      </div>
+      <div id="rsm4_body" class="rsm_body">
+      </div>
+    </div>
+  </div>

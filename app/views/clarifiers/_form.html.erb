@@ -1,0 +1,19 @@
+<%= form_with model: [ @whine, @whine.clarifiers.build ], local: true do |form| %>
+
+    <% if @clarifier && @clarifier.errors.any? %>
+        <div id='error_explanation'>
+            <h4><%= pluralize(@clarifier.errors.count, 'error') %> prohibited this answer from being saved:</h4>
+            <ul>
+                <% @clarifier.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <p>
+      <%= form.text_area :body, :class => 'form-control', :placeholder => 'Type a clarification here' %>
+      <%= form.hidden_field :whine_id, :value => params[:id] %>
+      <%= form.hidden_field :whiner_id, :value => current_whiner.id %>
+      <%= form.submit 'Clarify', :class => 'btn btn-secondary btn-sm' %>
+    </p>
+<% end %>

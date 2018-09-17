@@ -1,0 +1,20 @@
+<%= form_with model: [ @whine, @whine.answers.build ], local: true do |form| %>
+
+    <% if @answer && @answer.errors.any? %>
+        <div id='error_explanation'>
+            <h4><%= pluralize(@answer.errors.count, 'error') %> prohibited this answer from being saved:</h4>
+            <ul>
+                <% @answer.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <p>
+      <%= form.text_area :body, :class => 'form-control', :placeholder => 'Type an answer here and/or upload an image below' %>
+      <%= form.file_field :answer_image %>
+      <%= form.hidden_field :whine_id, :value => params[:id] %>
+      <%= form.hidden_field :whiner_id, :value => current_whiner.id %>
+      <%= form.submit 'Answer', :class => 'btn btn-secondary btn-sm' %>
+    </p>
+<% end %>

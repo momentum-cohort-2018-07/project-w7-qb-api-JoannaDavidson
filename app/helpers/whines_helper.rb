@@ -1,0 +1,2 @@
+module WhinesHelper
+end
