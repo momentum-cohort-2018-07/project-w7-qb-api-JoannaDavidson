@@ -1,4 +1,4 @@
-class Api::V1::WhinesController < BaseController
+class Api::V1::WhinesController < ApplicationController
     before_action :set_whine, only: [:show, :destroy]
     before_action :set_whiner, only: [:destroy]
     

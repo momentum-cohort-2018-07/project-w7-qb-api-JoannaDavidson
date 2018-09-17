@@ -1,3 +1,3 @@
-class Api::V1::AnswersController < BaseController
+class Api::V1::AnswersController < ApplicationController
 
 end

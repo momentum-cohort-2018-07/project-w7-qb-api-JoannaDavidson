@@ -1,4 +1,4 @@
-class Api::V1::SessionsController < BaseController
+class Api::V1::SessionsController < ApplicationController
 
     def create
         whiner = Whiner.find_by_username(params[:username].downcase)

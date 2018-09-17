@@ -1,4 +1,4 @@
-class Api::V1::WhinersController < BaseController
+class Api::V1::WhinersController < ApplicationController
     before_action :set_whiner, only: [:show, :edit, :update, :destroy]
     skip_before_action :verify_authentication, only: :create
 

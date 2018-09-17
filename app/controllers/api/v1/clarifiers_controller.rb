@@ -1,3 +1,3 @@
-class Api::V1::ClarifiersController < BaseController
+class Api::V1::ClarifiersController < ApplicationController
 
 end
