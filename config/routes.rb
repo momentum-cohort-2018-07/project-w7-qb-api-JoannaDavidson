@@ -6,6 +6,7 @@ Rails.application.routes.draw do
         member do
           put 'like', to: 'answers#upvote'
           put 'dislike', to: 'answers#downvote'
+          put 'best', to: 'answers#toggle_best'
         end
       end
     end

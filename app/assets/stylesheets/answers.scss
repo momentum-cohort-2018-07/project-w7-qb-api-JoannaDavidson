@@ -19,9 +19,16 @@
 
 .answer_byline {
     width: 100%;
-    background-color: pink;
     padding: 3px 10px;
     color: #111111;
+}
+
+.answer_best_true {
+    background-color: lightgreen;
+}
+
+.answer_best_false {
+    background-color: pink;
 }
 
 .answer_inner {

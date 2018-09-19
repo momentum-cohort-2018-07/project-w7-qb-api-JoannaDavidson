@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
     helper_method :logged_in?
     helper_method :token_whiner
     before_action :verify_authentication
-  
+    skip_before_action :verify_authentication, only: [:current_whiner, :token_whiner, :logged_in?]
+    
     def verify_authentication
       unless token_whiner
         render json: {error: "You don't have permission to access these resources"}, status: :unauthorized

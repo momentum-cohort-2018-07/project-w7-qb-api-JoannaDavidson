@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
     before_action :set_whine
+    before_action :set_answer, only: [:upvote, :downvote, :toggle_best]
     before_action :set_whiner, only: [:destroy]
     skip_before_action :verify_authentication
 
@@ -28,14 +29,18 @@ class AnswersController < ApplicationController
     end
 
     def upvote
-        @answer_upvote = Answer.find(params[:id])
-        @answer_upvote.upvote_by current_whiner
+        @answer.upvote_by current_whiner
         redirect_to @whine
     end
 
     def downvote
-        @answer_downvote = Answer.find(params[:id])
-        @answer_downvote.downvote_by current_whiner
+        @answer.downvote_by current_whiner
+        redirect_to @whine
+    end
+
+    def toggle_best
+        @answer.best_answer = !@answer.best_answer
+        @answer.save!
         redirect_to @whine
     end
 
@@ -47,6 +52,10 @@ private
 
     def set_whine
         @whine = Whine.find(params[:whine_id])
+    end
+
+    def set_answer
+        @answer = Answer.find(params[:id])
     end
 
     def answers_params

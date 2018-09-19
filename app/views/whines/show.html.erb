@@ -26,21 +26,21 @@
             <% @whine.answers.each do |answer| %>
             <% @a_id = answer.id %>
         <div class="answer_container">
-            <div class="answer_byline">Answer by <b><%= link_to "#{answer.whiner.username}", whiner_path(answer.whiner_id) %></b> posted at <%= answer.created_at %>.
+            <div class="answer_byline answer_best_<%= answer.best_answer%>">Answer by <b><%= link_to "#{answer.whiner.username}", whiner_path(answer.whiner_id) %></b> posted at <%= answer.created_at %>. <% if answer.best_answer %>
+                <b>BEST ANSWER</b>
+            <% end %>
             </div>
             <div class="answer_inner">
                 <div class="answer_vote">
+                    <% if current_whiner.id === @whine.whiner_id %>
+                        <%= link_to 'best', best_whine_answer_path(answer.whine_id, answer.id), method: :put, class: "text-right text-white btn btn-secondary text-white" %>
+                    <% end %>
                     <%= link_to like_whine_answer_path(answer.whine_id, answer.id), method: :put do %>
                         +
                     <% end %><br>
                     <%= answer.get_upvotes.size - answer.get_downvotes.size %><br>
                     <%= link_to dislike_whine_answer_path(answer.whine_id, answer.id), method: :put do %>
                         -
-                    <% end %>
-                    <% if current_whiner.id === @whine.whiner_id %>
-                        <%= link_to like_whine_answer_path(answer.whine_id, answer.id), method: :put do %>
-                            ?
-                        <% end %>
                     <% end %>
                 </div>
                 <div class="answer_body"><%= markdown(answer.body) %><% if answer.answer_image.attached? %>

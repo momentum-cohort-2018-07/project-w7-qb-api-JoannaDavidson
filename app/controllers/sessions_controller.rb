@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :verify_authentication
 
-    
   def create
     whiner = Whiner.find_by_username(params[:username].downcase)
     if whiner && whiner.authenticate(params[:password])
