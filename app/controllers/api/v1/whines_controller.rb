@@ -1,13 +1,15 @@
 class Api::V1::WhinesController < ApplicationController
     before_action :set_whine, only: [:show, :destroy]
     before_action :set_whiner, only: [:destroy]
-    
+    skip_before_action :verify_authentication, only: [:index, :show]
 
     def index         
         @whines = Whine.all
+        render 'index.json'
     end
 
     def show
+        render 'show.json'
     end
 
     def new
@@ -18,9 +20,9 @@ class Api::V1::WhinesController < ApplicationController
         @whine = Whine.new(whines_params)
 
         if @whine.save 
-            redirect_to @whine, notice: 'Whining successful.'
+            render json: @whine, status: :created
         else
-            render 'new'
+            render json: @whine.errors, status: :unprocessable_entity
         end
     end
 

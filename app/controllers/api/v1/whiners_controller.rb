@@ -1,16 +1,17 @@
 class Api::V1::WhinersController < ApplicationController
     before_action :set_whiner, only: [:show, :edit, :update, :destroy]
-    skip_before_action :verify_authentication, only: :create
+    skip_before_action :verify_authentication, only: [:index, :show, :create]
 
     def index
         @whiners = Whiner.all
+        render 'index.json'
     end
 
     def show
+        render 'show.json'
     end
 
     def new
-        @whiner = Whiner.new
     end
 
     def create
@@ -31,6 +32,7 @@ class Api::V1::WhinersController < ApplicationController
 
     def destroy
         @whiner.destroy
+        respond_to :html, :json        
     end
 
 private

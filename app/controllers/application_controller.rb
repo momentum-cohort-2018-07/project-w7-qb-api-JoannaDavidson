@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
     helper_method :logged_in?
     helper_method :token_whiner
     before_action :verify_authentication
-    before_action :destroy_session
   
     def verify_authentication
       unless token_whiner
