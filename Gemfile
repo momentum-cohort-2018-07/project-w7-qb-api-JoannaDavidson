@@ -51,6 +51,9 @@ gem 'redcarpet', '~> 3.0.0'
 # Use acts_as_votable for answer voting
 gem 'acts_as_votable', '~> 0.11.1'
 
+# Use pg_search for full-text searching
+gem 'pg_search'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
