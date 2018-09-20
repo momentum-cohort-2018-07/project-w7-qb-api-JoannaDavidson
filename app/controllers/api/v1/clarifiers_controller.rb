@@ -7,7 +7,6 @@ class Api::V1::ClarifiersController < ApplicationController
     end
 
     def new
-        render json: 
     end
 
     def create
