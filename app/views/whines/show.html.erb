@@ -19,7 +19,9 @@
             </div>
         </div>
             <% end %>
-        <div class="clarifier_form"><%= render partial: 'clarifiers/form' %></div>
+            <% if current_whiner %>
+                <div class="clarifier_form"><%= render partial: 'clarifiers/form' %></div>
+            <% end %>
     </div>
     <div class="answers_index_container">
         <h6>Answers:</h6>
@@ -32,7 +34,7 @@
             </div>
             <div class="answer_inner">
                 <div class="answer_vote">
-                    <% if current_whiner.id === @whine.whiner_id %>
+                    <% if current_whiner && current_whiner.id === @whine.whiner_id %>
                         <%= link_to 'best', best_whine_answer_path(answer.whine_id, answer.id), method: :put, class: "text-right text-white btn btn-secondary text-white" %>
                     <% end %>
                     <%= link_to like_whine_answer_path(answer.whine_id, answer.id), method: :put do %>
@@ -50,7 +52,9 @@
             </div>
         </div>
             <% end %>
-        <div class="answer_form"><%= render partial: 'answers/form' %></div>
+            <% if current_whiner %>
+                <div class="answer_form"><%= render partial: 'answers/form' %></div>
+            <% end %>
     </div>
   </div>
   <%= render 'rightsidemodules' %>
