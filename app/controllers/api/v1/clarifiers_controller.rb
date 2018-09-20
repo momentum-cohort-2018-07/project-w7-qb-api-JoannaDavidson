@@ -1,6 +1,4 @@
 class Api::V1::ClarifiersController < ApplicationController
-
-class ClarifiersController < ApplicationController
     before_action :set_whine
     before_action :set_whiner, only: [:destroy]
     skip_before_action :verify_authentication, only: :show
