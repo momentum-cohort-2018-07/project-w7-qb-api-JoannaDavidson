@@ -10,7 +10,7 @@
           <p><%= link_to 'Add an avatar', edit_whiner_path(current_whiner), :class => "rsm_avatar avatar_text btn btn-secondary btn-sm" %></p>
         <% end %>
         <ul>
-            <li>Whiner: <%= current_whiner.username %></li>
+            <li>Whiner: <%= link_to "#{current_whiner.username}", whiner_path(current_whiner.id) %></li>
             <li>Name: <%= current_whiner.name %></li>
             <li>Email: <%= current_whiner.email %></li>
         </ul>
@@ -21,9 +21,8 @@
       </div>
       <div id="rsm2_body" class="rsm_body">
         <ul>
-          <% @whiniest = Whine.select { |w| w.whiner_id === current_whiner.id }.last(5) %>
-          <% @whiniest.each do |rswhine| %>
-              <li><%= link_to "#{rswhine.title}", whine_path(rswhine.id) %></li>
+          <% @recent_whines.each do |rw| %>
+              <li><%= link_to "#{rw.title}", whine_path(rw.id) %></li>
           <% end %>
         </ul>
       </div>
@@ -33,9 +32,8 @@
       </div>
       <div id="rsm3_body" class="rsm_body">
         <ul>
-          <% @answerest = Answer.select { |a| a.whiner_id === current_whiner.id }.last(5) %>
-          <% @answerest.each do |rsanswer| %>
-              <li><%= link_to "#{Whine.find(rsanswer.whine_id).title}", whine_path(rsanswer.whine_id) %></li>
+          <% @recent_answers.each do |ra| %>
+              <li><%= link_to "Re: #{Whine.find(ra.whine_id).title}", whine_path(ra.whine_id) %></li>
             <% end %>
         </ul>
       </div>
@@ -52,9 +50,14 @@
       </div>
     </div>
     <div id="rs_module_5" class="rs_modules"><%# answers voted up the most %>
-      <div id="rsm4_header" class="rsm_header white_link">Best Answers
+      <div id="rsm5_header" class="rsm_header white_link">Recent Best Answers
       </div>
-      <div id="rsm4_body" class="rsm_body">
+      <div id="rsm5_body" class="rsm_body">
+        <ul>
+          <% @recent_best_answers.each do |ba| %>
+          <li><%= link_to "Re: #{Whine.find(ba.whine_id).title}", whine_path(ba.whine_id) %></li>
+          <% end %>
+        </ul>
       </div>
     </div>
   </div>

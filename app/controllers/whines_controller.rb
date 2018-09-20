@@ -1,6 +1,7 @@
 class WhinesController < ApplicationController
     before_action :set_whine, only: [:show, :destroy]
     before_action :set_whiner, only: [:destroy]
+    before_action :set_whiner_whines, :set_whiner_answers, :set_best_answers, :set_whiniest, only: [:index, :show]
     skip_before_action :verify_authentication
     
 
@@ -31,9 +32,28 @@ class WhinesController < ApplicationController
         else
             render :show, notice: 'You can only delete your own Whine.'
         end
-    end 
+    end
 
 private
+
+    def set_whiner_whines
+        @all_whiner_whines = Whine.select { |w| w.whiner_id === current_whiner.id }
+        @recent_whines = @all_whiner_whines.last(5)
+    end
+    
+    def set_whiner_answers
+        @all_whiner_answers = Answer.select { |a| a.whiner_id === current_whiner.id }
+        @recent_answers = @all_whiner_answers.last(5)
+    end
+
+    def set_whiniest
+        @whiniest = Answer.all
+    end
+
+    def set_best_answers
+        @recent_best_answers = Answer.select { |ba| ba.best_answer }.last(5)
+    end
+
     def set_whiner
         wtest = @whine.whiner_id
         @whiner = Whiner.find(wtest)
