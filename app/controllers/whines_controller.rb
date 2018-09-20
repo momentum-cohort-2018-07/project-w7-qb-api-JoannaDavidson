@@ -37,13 +37,13 @@ class WhinesController < ApplicationController
 private
 
     def set_whiner_whines
-        @all_whiner_whines = Whine.select { |w| w.whiner_id === current_whiner.id }
-        @recent_whines = @all_whiner_whines.last(5)
+        @all_whiner_whines = Whine.select { |w| w.whiner_id === current_whiner.id } if current_whiner
+        @recent_whines = @all_whiner_whines.last(5) if current_whiner
     end
     
     def set_whiner_answers
-        @all_whiner_answers = Answer.select { |a| a.whiner_id === current_whiner.id }
-        @recent_answers = @all_whiner_answers.last(5)
+        @all_whiner_answers = Answer.select { |a| a.whiner_id === current_whiner.id } if current_whiner
+        @recent_answers = @all_whiner_answers.last(5) if current_whiner
     end
 
     def set_whiniest
