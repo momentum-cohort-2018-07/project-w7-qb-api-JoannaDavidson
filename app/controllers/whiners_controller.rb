@@ -13,10 +13,13 @@ class WhinersController < ApplicationController
         @whiner = Whiner.new
     end
 
+    def edit
+    end
+
     def create
         @whiner = Whiner.new(whiner_params)
         if @whiner.save
-            WhinerMailer.signup(@whiner).deliver_now
+            WhinerMailer.welcome_email(@whiner).deliver_now
             redirect_to @whiner, notice: 'Account created. Please log in.'
         else
             render 'new'
@@ -24,9 +27,11 @@ class WhinersController < ApplicationController
     end
 
     def update
-    end
-
-    def edit
+        if @whiner.update(whiner_params.reject(:username))
+          redirect_to @whiner, notice: 'Whiner info successfully updated.'
+        else
+          render :edit
+        end
     end
 
     def destroy

@@ -25,6 +25,6 @@
     </p>
     <p>
       <%= form.hidden_field :whiner_id, :value => current_whiner.id %>
-      <%= form.submit %>
+      <%= form.submit 'Submit Whine', :class => 'btn btn-secondary btn-sm' %>
     </p>
 <% end %>
