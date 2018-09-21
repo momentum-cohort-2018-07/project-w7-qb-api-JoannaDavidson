@@ -54,6 +54,11 @@ gem 'acts_as_votable', '~> 0.11.1'
 # Use pg_search for full-text searching
 gem 'pg_search'
 
+# Gems for using Delayed Job queuing backend with Active Job
+gem 'delayed_job'
+gem 'delayed_job_active_record'
+gem 'daemons'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
