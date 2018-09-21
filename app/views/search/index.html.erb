@@ -1,0 +1,26 @@
+<div id="whine_index_header">
+  <h4>Whine Search Results Listings | <%= link_to 'Add a Whine/Question', new_whine_path, { :class=>"text-right text-white btn btn-primary text-white" } %>
+  <%= form_tag search_index_path, method: :get do %>
+    <%= text_field_tag :search_term, params[:search_term], :placeholder => 'Type a search here' %>
+    <%= submit_tag "Search", name: nil %>
+  <% end %></h4>
+</div>
+<div id="body_container" class="wrapper">
+  <div class="left_side_wrapper">
+    <% @results.each do |result| %>
+    <div class="whine_container">
+        <div class="whine_header white_link"><%= link_to "#{result.title}", whine_path(result.id) %><div class="whine_byline">Created by: <b><%= link_to "#{result.whiner.username}", whiner_path(result.whiner_id) %></b> on <%= result.created_at %>.</div>
+        </div>
+        <div class="whine_body"><% if result.body.length > 80 %>
+            <%= result.body.first(80) %>... <%= link_to "read more", whine_path(result.id) %><br>
+          <% else %>
+            <%= result.body %><br>
+          <% end %>
+        </div>
+    </div>
+    <% end %>
+    <%= paginate @results %>
+    <%= page_entries_info @results %>
+  </div>
+  <%# render 'whines/rightsidemodules' %>
+</div>

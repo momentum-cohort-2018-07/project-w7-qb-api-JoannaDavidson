@@ -1,0 +1,22 @@
+<div id="whine_index_header">
+  <h4>Whine Listings | <%= link_to 'Add a Whine/Question', new_whine_path, { :class=>"text-right text-white btn btn-primary text-white" } %> | <%= link_to 'Search', search_index_path, { :class=>"text-right text-white btn btn-primary text-white" } %></h4>
+</div>
+<div id="body_container" class="wrapper">
+  <div class="left_side_wrapper">
+    <% @whines.each do |whine| %>
+    <div class="whine_container">
+        <div class="whine_header white_link"><%= link_to "#{whine.title}", whine_path(whine.id) %><div class="whine_byline">Created by: <b><%= link_to "#{whine.whiner.username}", whiner_path(whine.whiner_id) %></b> on <%= whine.created_at %>.</div>
+        </div>
+        <div class="whine_body"><% if whine.body.length > 80 %>
+            <%= whine.body.first(80) %>... <%= link_to "read more", whine_path(whine.id) %><br>
+          <% else %>
+            <%= whine.body %><br>
+          <% end %>
+        </div>
+    </div>
+    <% end %>
+    <%= paginate @whines %>
+    <%= page_entries_info @whines %>
+  </div>
+  <%= render 'rightsidemodules' %>
+</div>

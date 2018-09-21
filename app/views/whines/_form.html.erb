@@ -1,0 +1,30 @@
+<%= form_with model: @whine, local: true do |form| %>
+
+    <% if @whine.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@whine.errors.count, "error") %> prohibited this Whine from being saved:</h2>
+            <ul>
+                <% @whine.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <p>
+      <%= form.label :summary %><br>
+      <%= form.text_field :title %>
+    </p>
+   
+    <p>
+      <%= form.label :full_whine %><br>
+      <%= form.text_area :body %>
+    </p>
+    <p>
+      <%= form.label :whine_image %><br>
+      <%= form.file_field :whine_image %>
+    </p>
+    <p>
+      <%= form.hidden_field :whiner_id, :value => current_whiner.id %>
+      <%= form.submit 'Submit Whine', :class => 'btn btn-secondary btn-sm' %>
+    </p>
+<% end %>

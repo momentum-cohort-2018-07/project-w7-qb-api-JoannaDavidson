@@ -1,0 +1,20 @@
+<%= link_to 'Home', '/' %>
+
+<h3>Whiner Login</h3>
+
+<% if flash[:notice] %>
+    <p class="alert alert-success"><%= flash[:notice] %></p>
+<% end %>
+<% if flash[:error_message]%>
+    <p class="alert alert-danger"><%= flash[:error_message] %></p>
+<% end %>
+
+<%= form_with(url: session_path) do |form| %>
+<ul>
+    <li><%= form.label :username %></li>
+    <li><%= form.text_field :username %></li>
+    <li><%= form.label :password %></li>
+    <li><%= form.password_field :password %></li>
+    <li><%= form.submit 'Log In', :class => 'btn btn-secondary btn-sm'%></li>
+</ul>
+<% end %>

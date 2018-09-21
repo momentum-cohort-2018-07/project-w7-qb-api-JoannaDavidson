@@ -1,0 +1,77 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+ @import "bootstrap";
+
+ @import "whines";
+ @import "whiners";
+ @import "sessions";
+ @import "clarifiers";
+ @import "answers";
+ 
+ body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.logged_banner {
+    padding: 5px;
+    border-bottom: 2px solid #ffffff;
+    text-align: center;
+    color: #ffffff;
+}
+
+.logged_in {
+    background-color: blue;
+}
+
+.logged_out {
+    background-color: crimson;
+}
+
+.white_link a:link,
+.white_link a:visited,
+.white_link a:hover,
+.white_link a:active {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#logo_block {
+    width: 20%;
+    float: left;
+}
+
+h1, h2, .h1, .h2 {
+    margin-bottom: 0px;
+}
+
+.breadcrumbs {
+    padding: 3px 5px;
+    background-color: #eeeeee;
+    font-size: 1.1rem;
+    font-weight: normal;
+    font-family: sans-serif;
+    color: green; 
+    border-bottom: 2px solid #ffffff;
+    margin-bottom: 5px;
+}
+
+.breadcrumbs a:link,
+.breadcrumbs a:visited,
+.breadcrumbs a:hover,
+.breadcrumbs a:active {
+    color: green;
+    text-decoration: none;
+}

@@ -1,0 +1,61 @@
+<div class="breadcrumbs"><%= link_to "Home", root_path %> > <%= link_to "Whines index", whines_path %> > Whine # <%= @whine.id %> | <%= link_to 'Add a new Whine/Question', new_whine_path, { :class=>"text-right text-white btn btn-primary btn-sm" } %></div>
+
+<div id="body_container" class="wrapper">
+  <div class="left_side_wrapper">
+    <div class="whine_container">
+        <div class="whine_header white_link"><%= @whine.title %><div class="whine_byline">Created by: <b><%= link_to "#{@whine.whiner.username}", whiner_path(@whine.whiner_id) %></b> at <%= @whine.created_at %>.</div>
+        </div>
+        <div class="whine_body">
+            <%= markdown(@whine.body) %><% if @whine.whine_image.attached? %>
+                <%= image_tag @whine.whine_image, class: "whine_image" %>
+            <% end %>
+        </div>
+    </div>
+    <div class="clarifiers_index_container">
+            <% @whine.clarifiers.each do |clarifier| %>
+        <div class="clarifier_container">
+            <div class="clarifier_byline"><b><%= link_to "#{clarifier.whiner.username}", whiner_path(clarifier.whiner_id) %></b> at <%= clarifier.created_at %>.</div>
+            <div class="clarifier_body"><%= markdown(clarifier.body) %>
+            </div>
+        </div>
+            <% end %>
+            <% if current_whiner %>
+                <div class="clarifier_form"><%= render partial: 'clarifiers/form' %></div>
+            <% end %>
+    </div>
+    <div class="answers_index_container">
+        <h6>Answers:</h6>
+            <% @whine.answers.each do |answer| %>
+            <% @a_id = answer.id %>
+        <div class="answer_container">
+            <div class="answer_byline answer_best_<%= answer.best_answer%>">Answer by <b><%= link_to "#{answer.whiner.username}", whiner_path(answer.whiner_id) %></b> posted at <%= answer.created_at %>. <% if answer.best_answer %>
+                <b>BEST ANSWER</b>
+            <% end %>
+            </div>
+            <div class="answer_inner">
+                <div class="answer_vote">
+                    <% if current_whiner && current_whiner.id === @whine.whiner_id %>
+                        <%= link_to 'best', best_whine_answer_path(answer.whine_id, answer.id), method: :put, class: "text-right text-white btn btn-secondary text-white" %>
+                    <% end %>
+                    <%= link_to like_whine_answer_path(answer.whine_id, answer.id), method: :put do %>
+                        +
+                    <% end %><br>
+                    <%= answer.get_upvotes.size - answer.get_downvotes.size %><br>
+                    <%= link_to dislike_whine_answer_path(answer.whine_id, answer.id), method: :put do %>
+                        -
+                    <% end %>
+                </div>
+                <div class="answer_body"><%= markdown(answer.body) %><% if answer.answer_image.attached? %>
+                    <%= image_tag answer.answer_image, class: "answer_image" %>
+                <% end %>
+                </div>
+            </div>
+        </div>
+            <% end %>
+            <% if current_whiner %>
+                <div class="answer_form"><%= render partial: 'answers/form' %></div>
+            <% end %>
+    </div>
+  </div>
+  <%= render 'rightsidemodules' %>
+</div>

@@ -1,0 +1,55 @@
+// Place all the styles related to the Answers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.answers_index_container {
+    width: 100%;
+    padding: 0 0 0 20px;
+}
+
+.answer_container {
+    width: 100%;
+    border: 2px solid #333333;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.answer_byline {
+    width: 100%;
+    padding: 3px 10px;
+    color: #111111;
+}
+
+.answer_best_true {
+    background-color: lightgreen;
+}
+
+.answer_best_false {
+    background-color: pink;
+}
+
+.answer_inner {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.answer_vote {
+    width: 10%;
+    background-color: #fff9de;
+    text-align: center;
+    padding: 3px;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.answer_body {
+    width: 90%;
+    background-color: #eeeeff;
+    padding: 3px 10px;
+}

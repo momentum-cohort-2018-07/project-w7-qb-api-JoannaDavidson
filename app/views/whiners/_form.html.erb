@@ -1,0 +1,42 @@
+<%= form_with model: @whiner, local: true do |form| %>
+    
+    <% if @whiner.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@whiner.errors.count, "error") %> prohibited this Whiner from being saved:</h2>
+            <ul>
+                <% @whiner.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <p>
+      <%= form.label :avatar %><br>
+      <%= form.file_field :avatar %>
+    </p>
+    <p>
+      <%= form.label :name %><br>
+      <%= form.text_field :name %>
+    </p>
+   
+    <p>
+      <%= form.label :username %><br>
+      <%= form.text_field :username %>
+    </p>
+
+    <p>
+      <%= form.label :email %><br>
+      <%= form.text_field :email %>
+    </p>
+
+    <p>
+      <%= form.label :password %><br>
+      <%= form.password_field :password %>
+    </p>
+
+    <p>
+      <%= form.label :password_confirmation %><br>
+      <%= form.password_field :password_confirmation %>
+    </p>
+    <p><%= form.submit 'Submit', :class => 'btn btn-secondary btn-sm' %></p>
+<% end %>

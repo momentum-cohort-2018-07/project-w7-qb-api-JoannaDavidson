@@ -1,0 +1,22 @@
+<div class="breadcrumbs"><%= link_to "Home", root_path %> > Whiners index:</div>
+
+<h4>Whiner index</h4>
+
+<div id="body_container" class="body_wrapper whindex_wrapper">
+<% @whiners.each do |whiner| %>
+    <div class="card" style="width: 18rem;">
+        <% if whiner.avatar.attached? %>
+            <%= image_tag whiner.avatar, :class => "card-img-top" %>
+        <% end %>
+        <div class="card-body">
+            <h5 class="card-title"><%= whiner.username %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= whiner.name %></h6>
+            <p class="card-text">Whining since: <%= whiner.created_at.strftime("%m-%d-%Y") %></p>
+            <%= link_to "More info", whiner_path(whiner.id), class: "card-link" %>
+        </div>
+    </div>
+<% end %>
+</div>
+    <%= paginate @whiners %>
+    <%= page_entries_info @whiners %>
+
