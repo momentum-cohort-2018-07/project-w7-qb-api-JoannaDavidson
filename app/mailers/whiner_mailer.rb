@@ -1,9 +1,9 @@
 class WhinerMailer < ApplicationMailer
     default from: 'mailer@querulous.com'
  
-    def welcome_email
+    def welcome_email(whiner)
         
-      @whiner = params[:whiner]
+      @whiner = whiner
       @url  = 'http://www.querulous.com/login'
 
       mail(
